@@ -13,15 +13,12 @@ jobs:
               apt-get update
               apt-get -y install default-mysql-server
               service mysql start
-
-             # Wait for MySQL to start
+              # Wait for MySQL to start
               sleep 5
-
         - run:
            name: Install flyway
            command: |
               curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-commandline-5.1.1-linux-x64.tar.gz | tar xvz
- 
        - run:
            name: Create test database and migrate
            command: |
