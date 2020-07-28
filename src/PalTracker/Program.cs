@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
-
+ using Steeltoe.Extensions.Logging;
 namespace PalTracker
 {
     public class Program
@@ -23,6 +23,11 @@ namespace PalTracker
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                .ConfigureLogging((hostingContext, loggingBuilder) =>
+                {
+                     loggingBuilder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                     loggingBuilder.AddDynamicConsole();
+                 });
     }
 }
